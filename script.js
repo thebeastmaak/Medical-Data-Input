@@ -4,7 +4,7 @@ document.getElementById("patient-form").addEventListener("submit", async (e) => 
   e.preventDefault();
 
   const patient = {
-  name: document.getElementById("full_name").value.trim(),  // changed here
+  full_name: document.getElementById("full_name").value.trim(),
   dob: document.getElementById("dob").value,
   gender: document.getElementById("gender").value,
   id_number: document.getElementById("id_number").value.trim(),
@@ -17,6 +17,7 @@ document.getElementById("patient-form").addEventListener("submit", async (e) => 
   emergency_phone: document.getElementById("emergency_phone").value.trim(),
   insurance_provider: document.getElementById("insurance_provider").value.trim()
 };
+
 
 
   try {
