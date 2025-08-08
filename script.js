@@ -4,31 +4,31 @@ document.getElementById("patient-form").addEventListener("submit", async (e) => 
   e.preventDefault();
 
   const patient = {
-  full_name: document.getElementById("full_name").value.trim(),
-  dob: document.getElementById("dob").value,
-  gender: document.getElementById("gender").value,
-  id_number: document.getElementById("id_number").value.trim(),
-  patient_id: document.getElementById("patient_id").value.trim(),
-  phone: document.getElementById("phone").value.trim(),
-  email: document.getElementById("email").value.trim(),
-  address: document.getElementById("address").value.trim(),
-  emergency_name: document.getElementById("emergency_name").value.trim(),
-  emergency_relationship: document.getElementById("emergency_relationship").value.trim(),
-  emergency_phone: document.getElementById("emergency_phone").value.trim(),
-  insurance_provider: document.getElementById("insurance_provider").value.trim()
-};
-
-
+    full_name: document.getElementById("full_name").value.trim(),
+    dob: document.getElementById("dob").value,
+    gender: document.getElementById("gender").value,
+    id_number: document.getElementById("id_number").value.trim(),
+    patient_id: document.getElementById("patient_id").value.trim(),
+    photo_url: document.getElementById("photo_url").value.trim(),  // NEW PHOTO URL
+    phone: document.getElementById("phone").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    address: document.getElementById("address").value.trim(),
+    emergency_name: document.getElementById("emergency_name").value.trim(),
+    emergency_relationship: document.getElementById("emergency_relationship").value.trim(),
+    emergency_phone: document.getElementById("emergency_phone").value.trim(),
+    insurance_provider: document.getElementById("insurance_provider").value.trim()
+  };
 
   try {
     const res = await fetch(`${API_URL}/add`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(patient),
-});
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(patient),
+    });
 
     const data = await res.json();
     alert(data.message || "✅ Patient added successfully.");
+    // Optionally clear form or reset here
   } catch (err) {
     console.error("❌ Error adding patient:", err);
     alert("❌ Failed to add patient.");
@@ -46,6 +46,7 @@ async function getPatient() {
     if (data.patient_id) {
       resultContainer.innerHTML = `
         <h2>Patient Details</h2>
+        ${data.photo_url ? `<img src="${data.photo_url}" alt="Patient Photo" style="max-width:150px; border-radius:8px; margin-bottom: 10px;">` : ""}
         <p><strong>🆔 Patient ID:</strong> ${data.patient_id}</p>
         <p><strong>👤 Name:</strong> ${data.full_name}</p>
         <p><strong>🎂 Date of Birth:</strong> ${data.dob}</p>
