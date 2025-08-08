@@ -1,4 +1,4 @@
-const API_URL = "https://backend-dpp.onrender.com";
+const API_URL = "https://medical-dpp-backend.onrender.com";
 
 document.getElementById("patient-form").addEventListener("submit", async (e) => {
   e.preventDefault();
